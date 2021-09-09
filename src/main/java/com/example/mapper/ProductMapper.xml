@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.ProductMapper">
+
+	<resultMap type="com.example.entity.Product" id="product">
+	<id property="productid" column="product_id"/>
+	<result property="productname" column="product_name"/>
+	<result property="productprice" column="product_price"/>
+	</resultMap>
+
+  <select id="getAllProduct" resultMap="product">
+ 		select * from product
+  </select>
+  
+  <insert id="insertProduct" parameterType="com.example.entity.Product">
+  		insert into product(product_id, product_name, product_price) values (#{productid},#{productname},#{productprice})
+  </insert>
+  
+   <update id="updateProduct" parameterType="com.example.entity.Product">
+  	update product set product_name=#{productname}, product_price=#{productprice} where product_id=#{productid}
+  </update>
+
+  <delete id="deleteProduct" parameterType="com.example.entity.Product">
+  	delete from product where product_id = #{productid}
+  </delete>
+  
+</mapper>
